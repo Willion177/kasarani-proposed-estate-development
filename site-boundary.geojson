@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "site-boundary",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "fid": 1, "id": null, "Name": "Site_A_Boundary" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 36.914538383841084, -1.225346020052707 ], [ 36.920330936744762, -1.229591247180744 ], [ 36.918307510730465, -1.233122323950794 ], [ 36.912118207627906, -1.229789622280185 ], [ 36.914538383841084, -1.225346020052707 ] ] ] ] } }
+]
+}
