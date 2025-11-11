@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Estate Development - Final</title>
+  <title>Estate Development - Final Presentation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
@@ -31,148 +31,20 @@
 </head>
 <body>
   <div id="map"></div>
-  <div class="info-panel">
-    <h2>🏘️ Estate Development</h2>
-    <p><strong>50 Acres</strong> (351m × 600m)</p>
-    <div class="legend">
-      <p><strong>PROPOSED DEVELOPMENT:</strong></p>
-      <p style="font-size:9px;margin:2px 0;">🏬 Mall (Blue) - Commercial</p>
-      <p style="font-size:9px;margin:2px 0;">🏟️ Stadium (Orange) - Recreation</p>
-      <p style="font-size:9px;margin:2px 0;">🏘️ Houses (Beige) - Residential</p>
-      <p style="font-size:9px;margin:2px 0;">🌳 Parks (Green) - Open Space</p>
-      <p style="font-size:9px;margin-top:6px;color:#999;">Context: Saint Francis Hospital (adjacent), Mwiki urban center (east)</p>
-    </div>
+<div class="info-panel">
+  <div id="new-legend-section" style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #ddd;">
+    <p style="font-family: 'Verdana', sans-serif !important; color: #3498db !important; font-size: 13px !important; margin: 0;"><strong>50-acre land for sale, Kasarani</strong></p>
   </div>
-  <div class="controls">
-    <h3>🎛️ Position Controls</h3>
-    <div class="feature-section">
-      <h4>🚪 Gate <button class="toggle-btn" onclick="toggleFeature('gate')">ON</button></h4>
-      <div class="control-item">
-        <label>E/W: <span class="value-display" id="gate-lng">-200</span>m</label>
-        <input type="range" id="gate-lng-slider" min="-200" max="200" value="-200">
-      </div>
-      <div class="control-item">
-        <label>N/S: <span class="value-display" id="gate-lat">0</span>m</label>
-        <input type="range" id="gate-lat-slider" min="-300" max="500" step="5" value="0">
-      </div>
-    </div>
-    <div class="feature-section">
-      <h4>🏬 Mall <button class="toggle-btn" onclick="toggleFeature('mall')">ON</button></h4>
-      <div class="control-item">
-        <label>E/W: <span class="value-display" id="mall-lng">-184</span>m</label>
-        <input type="range" id="mall-lng-slider" min="-200" max="200" value="-184">
-      </div>
-      <div class="control-item">
-        <label>N/S: <span class="value-display" id="mall-lat">49</span>m</label>
-        <input type="range" id="mall-lat-slider" min="-200" max="200" value="49">
-      </div>
-      <div class="control-item">
-        <label>Size: <span class="value-display" id="mall-size">67</span>m</label>
-        <input type="range" id="mall-size-slider" min="20" max="100" value="67">
-      </div>
-    </div>
-    <div class="feature-section">
-      <h4>🏟️ Stadium <button class="toggle-btn" onclick="toggleFeature('stadium')">ON</button></h4>
-      <div class="control-item">
-        <label>E/W: <span class="value-display" id="stadium-lng">-54</span>m</label>
-        <input type="range" id="stadium-lng-slider" min="-200" max="200" value="-54">
-      </div>
-      <div class="control-item">
-        <label>N/S: <span class="value-display" id="stadium-lat">0</span>m</label>
-        <input type="range" id="stadium-lat-slider" min="-200" max="200" value="0">
-      </div>
-      <div class="control-item">
-        <label>Size: <span class="value-display" id="stadium-size">100</span>m</label>
-        <input type="range" id="stadium-size-slider" min="20" max="100" value="100">
-      </div>
-    </div>
-    <div class="feature-section">
-      <h4>🏘️ Houses <button class="toggle-btn" onclick="toggleFeature('residential')">ON</button></h4>
-      <div class="control-item">
-        <label>E/W: <span class="value-display" id="houses-lng">-11</span>m</label>
-        <input type="range" id="houses-lng-slider" min="-100" max="100" value="-11">
-      </div>
-      <div class="control-item">
-        <label>N/S: <span class="value-display" id="houses-lat">-21</span>m</label>
-        <input type="range" id="houses-lat-slider" min="-100" max="100" value="-21">
-      </div>
-      <div class="control-item">
-        <label>Rotation: <span class="value-display" id="houses-rotation">150</span>°</label>
-        <input type="range" id="houses-rotation-slider" min="0" max="360" value="150">
-      </div>
-    </div>
-    <div class="feature-section">
-      <h4>🌳 Park 1 <button class="toggle-btn" onclick="toggleFeature('park1')">ON</button></h4>
-      <div class="control-item">
-        <label>E/W: <span class="value-display" id="p1-lng">-27</span>m</label>
-        <input type="range" id="p1-lng-slider" min="-200" max="200" value="-27">
-      </div>
-      <div class="control-item">
-        <label>N/S: <span class="value-display" id="p1-lat">196</span>m</label>
-        <input type="range" id="p1-lat-slider" min="-200" max="200" value="196">
-      </div>
-      <div class="control-item">
-        <label>W: <span class="value-display" id="p1-w">100</span>m</label>
-        <input type="range" id="p1-w-slider" min="10" max="100" value="100">
-      </div>
-      <div class="control-item">
-        <label>H: <span class="value-display" id="p1-h">81</span>m</label>
-        <input type="range" id="p1-h-slider" min="10" max="100" value="81">
-      </div>
-    </div>
-    <div class="feature-section">
-      <h4>🌳 Park 2 <button class="toggle-btn" onclick="toggleFeature('park2')">ON</button></h4>
-      <div class="control-item">
-        <label>E/W: <span class="value-display" id="p2-lng">37</span>m</label>
-        <input type="range" id="p2-lng-slider" min="-200" max="200" value="37">
-      </div>
-      <div class="control-item">
-        <label>N/S: <span class="value-display" id="p2-lat">-192</span>m</label>
-        <input type="range" id="p2-lat-slider" min="-200" max="200" value="-192">
-      </div>
-      <div class="control-item">
-        <label>W: <span class="value-display" id="p2-w">100</span>m</label>
-        <input type="range" id="p2-w-slider" min="10" max="100" value="100">
-      </div>
-      <div class="control-item">
-        <label>H: <span class="value-display" id="p2-h">82</span>m</label>
-        <input type="range" id="p2-h-slider" min="10" max="100" value="82">
-      </div>
-    </div>
-    <div class="feature-section">
-      <h4>🌳 Park 3 <button class="toggle-btn" onclick="toggleFeature('park3')">ON</button></h4>
-      <div class="control-item">
-        <label>E/W: <span class="value-display" id="p3-lng">-41</span>m</label>
-        <input type="range" id="p3-lng-slider" min="-200" max="200" value="-41">
-      </div>
-      <div class="control-item">
-        <label>N/S: <span class="value-display" id="p3-lat">-101</span>m</label>
-        <input type="range" id="p3-lat-slider" min="-200" max="200" value="-101">
-      </div>
-      <div class="control-item">
-        <label>W: <span class="value-display" id="p3-w">91</span>m</label>
-        <input type="range" id="p3-w-slider" min="10" max="100" value="91">
-      </div>
-      <div class="control-item">
-        <label>H: <span class="value-display" id="p3-h">42</span>m</label>
-        <input type="range" id="p3-h-slider" min="10" max="100" value="42">
-      </div>
-    </div>
-    <div class="feature-section">
-      <h4>🛣️ Internal Road Network</h4>
-      <div class="control-item">
-        <label>E/W Offset: <span class="value-display" id="road-lng">41</span>m</label>
-        <input type="range" id="road-lng-slider" min="-100" max="100" value="41">
-      </div>
-      <div class="control-item">
-        <label>N/S Offset: <span class="value-display" id="road-lat">-100</span>m</label>
-        <input type="range" id="road-lat-slider" min="-100" max="100" value="-100">
-      </div>
-    </div>
-    <button onclick="fitView()">📍 Fit to Site</button>
-    <button onclick="exportCoords()" class="secondary">📥 Export Coords</button>
+  <p style="font-size:11px;margin:2px 0;">📍 Location: Kasarani, Nairobi</p>
+  <p style="font-size:11px;margin:2px 0;">➤ Just 2.5 km off Thika Highway</p>
+  <p style="font-size:11px;margin:2px 0;">➤ 50 acres (20.23 hectares)</p>  <!-- New -->
+  <p style="font-size:11px;margin:2px 0;">➤ Approx. 600 m x 351m parallelogram</p>  <!-- New -->
+ </div>
+ 
+  <div id="contact-footer" style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); background: white; padding: 8px 12px; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 1000;">
+    <p style="margin: 0; font-size: 13px; color: #333;"><strong>Contact Information:</strong></p>
+    <p style="margin: 2px 0 0 0; font-size: 11px; color: #666;">Wilson Njuguna | +254 731 268 385</p>
   </div>
-  <div id="status">Ready</div>
 
 <script>
 mapboxgl.accessToken='pk.eyJ1Ijoia2lyb25qaWdnIiwiYSI6ImNtaDc5enB6NzBxZXQya3NpbHh3cTdxaTUifQ.PvzCNIg-j8EbgpJqHZK7sQ';
@@ -185,7 +57,7 @@ const neCorner=[Math.max(...lngs),Math.max(...lats)];
 BASE.gate=[(neCorner[0]+BASE.mall[0])/2,(neCorner[1]+BASE.mall[1])/2];
 
 const M2D=0.00001;
-// INTEGRATED FINAL COORDINATES
+// INTEGRATED FINAL COORDINATES (No longer used, but kept for reference)
 const adj={gate:{lng:-200,lat:0},mall:{lng:-184,lat:49,size:67},stadium:{lng:-54,lat:0,size:100},houses:{lng:-11,lat:-21,rotation:150},park1:{lng:-27,lat:196,w:100,h:81},park2:{lng:37,lat:-192,w:100,h:82},park3:{lng:-41,lat:-101,w:91,h:42},road:{lng:41,lat:-100}};
 
 const map=new mapboxgl.Map({container:'map',style:'mapbox://styles/mapbox/satellite-streets-v12',center:[centerLng,centerLat],zoom:15.5,pitch:60,antialias:true});
@@ -193,65 +65,13 @@ let bounds;
 
 function getCoord(base,adjustment){return[base[0]+(adjustment.lng*M2D),base[1]+(adjustment.lat*M2D)];}
 
-function updateGate(){const c=getCoord(BASE.gate,adj.gate),s=0.00008;map.getSource('gate').setData({type:'FeatureCollection',features:[{type:'Feature',geometry:{type:'Polygon',coordinates:[[[c[0]-s,c[1]-s/2],[c[0]+s,c[1]-s/2],[c[0]+s,c[1]+s/2],[c[0]-s,c[1]+s/2],[c[0]-s,c[1]-s/2]]]}}]});}
-
-function updateMall(){const c=getCoord(BASE.mall,adj.mall),s=adj.mall.size*M2D;map.getSource('mall').setData({type:'FeatureCollection',features:[{type:'Feature',properties:{height:18},geometry:{type:'Polygon',coordinates:[[[c[0]-s/2,c[1]-s/2],[c[0]+s/2,c[1]-s/2],[c[0]+s/2,c[1]+s/2],[c[0]-s/2,c[1]+s/2],[c[0]-s/2,c[1]-s/2]]]}}]});}
-
-function updateStadium(){const c=getCoord(BASE.stadium,adj.stadium),s=adj.stadium.size*M2D;map.getSource('stadium').setData({type:'FeatureCollection',features:[{type:'Feature',properties:{height:25},geometry:{type:'Polygon',coordinates:[[[c[0]-s/2,c[1]-s/2],[c[0]+s/2,c[1]-s/2],[c[0]+s/2,c[1]+s/2],[c[0]-s/2,c[1]+s/2],[c[0]-s/2,c[1]-s/2]]]}}]});}
-
-function updateHouses(){const minLng=Math.min(...BASE.housesZone.map(c=>c[0]))+(adj.houses.lng*M2D),maxLng=Math.max(...BASE.housesZone.map(c=>c[0]))+(adj.houses.lng*M2D),minLat=Math.min(...BASE.housesZone.map(c=>c[1]))+(adj.houses.lat*M2D),maxLat=Math.max(...BASE.housesZone.map(c=>c[1]))+(adj.houses.lat*M2D);const w=maxLng-minLng,h=maxLat-minLat,gridCenterLng=(minLng+maxLng)/2,gridCenterLat=(minLat+maxLat)/2,rotAngle=adj.houses.rotation*Math.PI/180;const houses={type:'FeatureCollection',features:[]};const rows=4,cols=6,hSize=Math.min(w/cols*0.5,h/rows*0.5),spX=w/cols,spY=h/rows;for(let r=0;r<rows;r++){for(let c=0;c<cols;c++){const origLng=minLng+(c*spX)+spX/2,origLat=minLat+(r*spY)+spY/2,offsetLng=origLng-gridCenterLng,offsetLat=origLat-gridCenterLat,rotatedOffsetLng=offsetLng*Math.cos(rotAngle)-offsetLat*Math.sin(rotAngle),rotatedOffsetLat=offsetLng*Math.sin(rotAngle)+offsetLat*Math.cos(rotAngle),newLng=gridCenterLng+rotatedOffsetLng,newLat=gridCenterLat+rotatedOffsetLat;const corners=[[-hSize/2,-hSize/2],[hSize/2,-hSize/2],[hSize/2,hSize/2],[-hSize/2,hSize/2],[-hSize/2,-hSize/2]];const rotated=corners.map(([x,y])=>{const rx=x*Math.cos(rotAngle)-y*Math.sin(rotAngle),ry=x*Math.sin(rotAngle)+y*Math.cos(rotAngle);return[newLng+rx,newLat+ry];});houses.features.push({type:'Feature',geometry:{type:'Polygon',coordinates:[rotated]}});}}map.getSource('residential').setData(houses);}
-
-function updateParks(){['park1','park2','park3'].forEach((parkId)=>{const p=adj[parkId],centerCoord=getCoord([centerLng,centerLat],p),w=p.w*M2D,h=p.h*M2D;map.getSource(parkId).setData({type:'FeatureCollection',features:[{type:'Feature',geometry:{type:'Polygon',coordinates:[[[centerCoord[0]-w/2,centerCoord[1]-h/2],[centerCoord[0]+w/2,centerCoord[1]-h/2],[centerCoord[0]+w/2,centerCoord[1]+h/2],[centerCoord[0]-w/2,centerCoord[1]+h/2],[centerCoord[0]-w/2,centerCoord[1]-h/2]]]}}]});});}
-
-function updateRoads(){
-    const gateCoord=getCoord(BASE.gate,adj.gate),mallCoord=getCoord(BASE.mall,adj.mall);
-    const roadAdjLng = adj.road.lng * M2D;
-    const roadAdjLat = adj.road.lat * M2D;
-
-    // New Comprehensive Internal Road Network Logic
-    // This creates a road that circles the residential area and connects the mall/stadium to the gate.
-    
-    // 1. Calculate the center of the residential/stadium area
-    const resCenter = getCoord(BASE.housesZone[0], {lng: adj.houses.lng, lat: adj.houses.lat});
-    const stadiumCenter = getCoord(BASE.stadium, adj.stadium);
-    const roadCenterLng = (resCenter[0] + stadiumCenter[0]) / 2 + roadAdjLng;
-    const roadCenterLat = (resCenter[1] + stadiumCenter[1]) / 2 + roadAdjLat;
-    
-    // 2. Define the corners of the internal loop (relative to the calculated center)
-    const loopSizeLng = 0.0008; // ~80m
-    const loopSizeLat = 0.0006; // ~60m
-
-    const loopCoords = [
-        [roadCenterLng + loopSizeLng, roadCenterLat + loopSizeLat], // NE
-        [roadCenterLng - loopSizeLng, roadCenterLat + loopSizeLat], // NW
-        [roadCenterLng - loopSizeLng, roadCenterLat - loopSizeLat], // SW
-        [roadCenterLng + loopSizeLng, roadCenterLat - loopSizeLat], // SE
-        [roadCenterLng + loopSizeLng, roadCenterLat + loopSizeLat]  // Close the loop
-    ];
-
-    // 3. Define the connection road from the loop to the gate/mall road
-    const connectionPoint = [roadCenterLng + loopSizeLng, roadCenterLat]; // Mid-point on the East side of the loop
-    
-    // 4. Entrance Road (Gate to Mall)
-    const entranceRoadCoords = [
-        gateCoord,
-        mallCoord
-    ];
-
-    map.getSource('roads').setData({type:'FeatureCollection',features:[
-        // Entrance Road
-        {type:'Feature',properties:{type:'entrance_outline'},geometry:{type:'LineString',coordinates:entranceRoadCoords}},
-        {type:'Feature',properties:{type:'entrance_center'},geometry:{type:'LineString',coordinates:entranceRoadCoords}},
-        
-        // Internal Loop Road
-        {type:'Feature',properties:{type:'perimeter_outline'},geometry:{type:'LineString',coordinates:loopCoords}},
-        {type:'Feature',properties:{type:'perimeter_center'},geometry:{type:'LineString',coordinates:loopCoords}},
-        
-        // Connection Road (Connects loop to entrance road)
-        {type:'Feature',properties:{type:'perimeter_outline'},geometry:{type:'LineString',coordinates:[connectionPoint, mallCoord]}},
-        {type:'Feature',properties:{type:'perimeter_center'},geometry:{type:'LineString',coordinates:[connectionPoint, mallCoord]}}
-    ]});
-}
+// All update functions for proposed developments removed as requested.
+function updateGate(){}
+function updateMall(){}
+function updateStadium(){}
+function updateHouses(){}
+function updateParks(){}
+function updateRoads(){}
 
 map.on('load',()=>{
     map.addSource('mapbox-dem',{type:'raster-dem',url:'mapbox://mapbox.mapbox-terrain-dem-v1'});
@@ -277,52 +97,18 @@ map.on('load',()=>{
     boundary.forEach(c=>bounds.extend(c));
     map.fitBounds(bounds,{padding:60,pitch:60});
     
-    ['gate','mall','stadium','residential','roads','park1','park2','park3'].forEach(id=>map.addSource(id,{type:'geojson',data:{type:'FeatureCollection',features:[]}}));
+    // All proposed development sources removed as requested.
     
-    map.addLayer({id:'gate-3d',type:'fill-extrusion',source:'gate',paint:{'fill-extrusion-color':'#9C27B0','fill-extrusion-height':6,'fill-extrusion-opacity':0.9}});
-    map.addLayer({id:'mall-3d',type:'fill-extrusion',source:'mall',paint:{'fill-extrusion-color':'#2196F3','fill-extrusion-height':['get','height'],'fill-extrusion-opacity':0.9}});
-    map.addLayer({id:'stadium-3d',type:'fill-extrusion',source:'stadium',paint:{'fill-extrusion-color':'#FF9800','fill-extrusion-height':['get','height'],'fill-extrusion-opacity':0.9}});
-    map.addLayer({id:'residential-3d',type:'fill-extrusion',source:'residential',paint:{'fill-extrusion-color':'#f4e4c1','fill-extrusion-height':8,'fill-extrusion-opacity':0.9}});
-
-    // Road Layers (Highway Style)
-    // Perimeter Road (Internal Loop)
-    map.addLayer({id:'perimeter-outline',type:'line',source:'roads',filter:['==','type','perimeter_outline'],paint:{'line-color':'#6c757d','line-width':10}});
-    map.addLayer({id:'perimeter-base',type:'line',source:'roads',filter:['==','type','perimeter_outline'],paint:{'line-color':'#444','line-width':8}});
-    map.addLayer({id:'perimeter-centerline',type:'line',source:'roads',filter:['==','type','perimeter_center'],paint:{'line-color':'#fff','line-width':2,'line-dasharray':[2,2]}});
-
-    // Entrance Road
-    map.addLayer({id:'entrance-outline',type:'line',source:'roads',filter:['==','type','entrance_outline'],paint:{'line-color':'#6c757d','line-width':10}});
-    map.addLayer({id:'entrance-base',type:'line',source:'roads',filter:['==','type','entrance_outline'],paint:{'line-color':'#444','line-width':8}});
-    map.addLayer({id:'entrance-centerline',type:'line',source:'roads',filter:['==','type','entrance_center'],paint:{'line-color':'#fff','line-width':2,'line-dasharray':[2,2]}});
-
-    // PARK FIX: Removed extrusion height for natural appearance
-    ['park1','park2','park3'].forEach(id=>map.addLayer({id:id+'-3d',type:'fill-extrusion',source:id,paint:{'fill-extrusion-color':'#4CAF50','fill-extrusion-height':0.01,'fill-extrusion-opacity':0.7}}));
-    
-    updateGate();updateMall();updateStadium();updateHouses();updateParks();updateRoads();
+    // All proposed development layers removed as requested.
+    // Only boundary and terrain remain.
     document.getElementById('status').textContent='✅ Ready! Adjust features with sliders.';
 });
 
-document.getElementById('gate-lng-slider').oninput=e=>{adj.gate.lng=+e.target.value;document.getElementById('gate-lng').textContent=e.target.value;updateGate();updateRoads();};
-document.getElementById('gate-lat-slider').oninput=e=>{adj.gate.lat=+e.target.value;document.getElementById('gate-lat').textContent=e.target.value;updateGate();updateRoads();};
-document.getElementById('mall-lng-slider').oninput=e=>{adj.mall.lng=+e.target.value;document.getElementById('mall-lng').textContent=e.target.value;updateMall();updateRoads();};
-document.getElementById('mall-lat-slider').oninput=e=>{adj.mall.lat=+e.target.value;document.getElementById('mall-lat').textContent=e.target.value;updateMall();updateRoads();};
-document.getElementById('mall-size-slider').oninput=e=>{adj.mall.size=+e.target.value;document.getElementById('mall-size').textContent=e.target.value;updateMall();};
-document.getElementById('stadium-lng-slider').oninput=e=>{adj.stadium.lng=+e.target.value;document.getElementById('stadium-lng').textContent=e.target.value;updateStadium();updateRoads();};
-document.getElementById('stadium-lat-slider').oninput=e=>{adj.stadium.lat=+e.target.value;document.getElementById('stadium-lat').textContent=e.target.value;updateStadium();updateRoads();};
-document.getElementById('stadium-size-slider').oninput=e=>{adj.stadium.size=+e.target.value;document.getElementById('stadium-size').textContent=e.target.value;updateStadium();};
-document.getElementById('houses-lng-slider').oninput=e=>{adj.houses.lng=+e.target.value;document.getElementById('houses-lng').textContent=e.target.value;updateHouses();};
-document.getElementById('houses-lat-slider').oninput=e=>{adj.houses.lat=+e.target.value;document.getElementById('houses-lat').textContent=e.target.value;updateHouses();};
-document.getElementById('houses-rotation-slider').oninput=e=>{adj.houses.rotation=+e.target.value;document.getElementById('houses-rotation').textContent=e.target.value;updateHouses();};
-document.getElementById('road-lng-slider').oninput=e=>{adj.road.lng=+e.target.value;document.getElementById('road-lng').textContent=e.target.value;updateRoads();};
-document.getElementById('road-lat-slider').oninput=e=>{adj.road.lat=+e.target.value;document.getElementById('road-lat').textContent=e.target.value;updateRoads();};
-
-['1','2','3'].forEach(n=>{document.getElementById(`p${n}-lng-slider`).oninput=e=>{adj[`park${n}`].lng=+e.target.value;document.getElementById(`p${n}-lng`).textContent=e.target.value;updateParks();};document.getElementById(`p${n}-lat-slider`).oninput=e=>{adj[`park${n}`].lat=+e.target.value;document.getElementById(`p${n}-lat`).textContent=e.target.value;updateParks();};document.getElementById(`p${n}-w-slider`).oninput=e=>{adj[`park${n}`].w=+e.target.value;document.getElementById(`p${n}-w`).textContent=e.target.value;updateParks();};document.getElementById(`p${n}-h-slider`).oninput=e=>{adj[`park${n}`].h=+e.target.value;document.getElementById(`p${n}-h`).textContent=e.target.value;updateParks();};});
-
-window.toggleFeature=id=>{const layer=id==='residential'?'residential-3d':id.includes('park')?id+'-3d':id+'-3d';const vis=map.getLayoutProperty(layer,'visibility');map.setLayoutProperty(layer,'visibility',vis==='visible'?'none':'visible');};
+// All control event listeners and related functions removed as requested.
 window.fitView=()=>{if(bounds)map.fitBounds(bounds,{padding:60,pitch:60,duration:2000});};
-window.exportCoords=()=>{const data={gate:getCoord(BASE.gate,adj.gate),mall:getCoord(BASE.mall,adj.mall),stadium:getCoord(BASE.stadium,adj.stadium),adjustments:adj};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='estate-final.json';a.click();document.getElementById('status').textContent='✅ Exported!';};
+window.exportCoords=()=>{console.log('Export function removed as controls are removed.');};
 
-console.log('🚀 Estate map ready! All features working.');
+console.log('🚀 Estate map ready! All features removed for final presentation.');
 </script>
 </body>
 </html>
