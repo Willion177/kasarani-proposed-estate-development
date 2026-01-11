@@ -1,114 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Estate Development - Final Presentation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
-    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
-    .info-panel { position: absolute; top: 10px; left: 10px; background: white; padding: 12px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 1; max-width: 250px; }
-    .info-panel h2 { margin: 0 0 6px 0; font-size: 15px; }
-    .info-panel p { margin: 3px 0; font-size: 10px; color: #666; }
-    .info-panel strong { color: #333; }
-    .legend { margin-top: 8px; padding-top: 8px; border-top: 1px solid #ddd; }
-    .controls { position: absolute; top: 10px; right: 10px; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 1; width: 240px; max-height: 90vh; overflow-y: auto; }
-    .controls h3 { margin: 0 0 8px 0; font-size: 12px; border-bottom: 2px solid #4264fb; padding-bottom: 4px; }
-    .feature-section { margin: 8px 0; padding: 6px; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #4264fb; }
-    .feature-section h4 { margin: 0 0 5px 0; font-size: 10px; display: flex; justify-content: space-between; }
-    .toggle-btn { font-size: 8px; padding: 2px 5px; background: #4264fb; color: white; border: none; border-radius: 2px; cursor: pointer; }
-    .control-item { margin: 4px 0; }
-    .control-item label { display: block; font-size: 9px; color: #666; margin-bottom: 2px; }
-    .control-item input[type="range"] { width: 100%; }
-    .value-display { font-weight: bold; color: #4264fb; }
-    button { width: 100%; padding: 6px; margin: 2px 0; border: none; border-radius: 4px; background: #4264fb; color: white; cursor: pointer; font-size: 9px; }
-    button:hover { background: #3451d9; }
-    button.secondary { background: #6c757d; }
-    #status { position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.85); color: white; padding: 8px; border-radius: 4px; font-size: 10px; }
-  </style>
-  <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.js"></script>
-  <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasarani 50 Acre Plot - Interactive 3D Map</title>
+    
+    <!-- Mapbox GL JS -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="map"></div>
-<div class="info-panel">
-  <div id="new-legend-section" style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #ddd;">
-    <p style="font-family: 'Verdana', sans-serif !important; color: #3498db !important; font-size: 13px !important; margin: 0;"><strong>50-acre land for sale, Kasarani</strong></p>
-  </div>
-  <p style="font-size:11px;margin:2px 0;">📍 Location: Kasarani, Nairobi</p>
-  <p style="font-size:11px;margin:2px 0;">➤ Just 2.5 km off Thika Highway</p>
-  <p style="font-size:11px;margin:2px 0;">➤ 50 acres (20.23 hectares)</p>  <!-- New -->
-  <p style="font-size:11px;margin:2px 0;">➤ Approx. 600 m x 351m parallelogram</p>  <!-- New -->
- </div>
- 
-  <div id="contact-footer" style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); background: white; padding: 8px 12px; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 1000;">
-    <p style="margin: 0; font-size: 13px; color: #333;"><strong>Contact Information:</strong></p>
-    <p style="margin: 2px 0 0 0; font-size: 11px; color: #666;">Wilson Njuguna | +254 731 268 385</p>
-  </div>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1 class="header-title">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Kasarani 50 Acre Plot
+                    </h1>
+                    <p class="header-subtitle">
+                        50 Acres (20.23 Ha) | Coordinates: -1.229°, 36.916°
+                    </p>
+                </div>
+                <div class="header-right">
+                    <p class="header-location">Kasarani, Nairobi</p>
+                    <p class="header-distance">2.5 km off Thika Highway</p>
+                </div>
+            </div>
+        </header>
 
-<script>
-mapboxgl.accessToken='pk.eyJ1Ijoia2lyb25qaWdnIiwiYSI6ImNtaDc5enB6NzBxZXQya3NpbHh3cTdxaTUifQ.PvzCNIg-j8EbgpJqHZK7sQ';
+        <!-- Controls -->
+        <div class="controls">
+            <div class="controls-content">
+                <div class="view-buttons">
+                    <button id="overviewBtn" class="view-btn active">
+                        <div class="btn-content">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"></path>
+                            </svg>
+                            Overview
+                        </div>
+                        <div class="btn-subtitle">Full Property View</div>
+                    </button>
+                    <button id="detailBtn" class="view-btn">
+                        <div class="btn-content">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                            </svg>
+                            Detail View
+                        </div>
+                        <div class="btn-subtitle">Close-up Boundaries</div>
+                    </button>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="tourBtn" class="action-btn tour-btn">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        Start Tour
+                    </button>
+                    <button id="resetBtn" class="action-btn reset-btn">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 4v6h6M23 20v-6h-6"></path>
+                            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
+                        </svg>
+                        Reset View
+                    </button>
+                </div>
+            </div>
+        </div>
 
-const BASE={mall:[36.918847,-1.229852],stadium:[36.916175,-1.229245],housesZone:[[36.914865,-1.226459],[36.914532,-1.227557],[36.913962,-1.228479],[36.913455,-1.229514]]};
-const boundary=[[36.914538383841084,-1.225346020052707],[36.920330936744762,-1.229591247180744],[36.918307510730465,-1.233122323950794],[36.912118207627906,-1.229789622280185],[36.914538383841084,-1.225346020052707]];
-const lngs=boundary.map(c=>c[0]),lats=boundary.map(c=>c[1]);
-const centerLng=(Math.min(...lngs)+Math.max(...lngs))/2,centerLat=(Math.min(...lats)+Math.max(...lats))/2;
-const neCorner=[Math.max(...lngs),Math.max(...lats)];
-BASE.gate=[(neCorner[0]+BASE.mall[0])/2,(neCorner[1]+BASE.mall[1])/2];
+        <!-- Map Container -->
+        <div class="map-container">
+            <div id="map" class="map active"></div>
 
-const M2D=0.00001;
-// INTEGRATED FINAL COORDINATES (No longer used, but kept for reference)
-const adj={gate:{lng:-200,lat:0},mall:{lng:-184,lat:49,size:67},stadium:{lng:-54,lat:0,size:100},houses:{lng:-11,lat:-21,rotation:150},park1:{lng:-27,lat:196,w:100,h:81},park2:{lng:37,lat:-192,w:100,h:82},park3:{lng:-41,lat:-101,w:91,h:42},road:{lng:41,lat:-100}};
+            <!-- Info Panel -->
+            <div class="info-panel" id="infoPanel">
+                <div id="propertyInfo" class="info-content collapsed">
+                    <button class="mobile-toggle" id="propertyToggle">ℹ️ View Info</button>
+                    <div class="panel-content">
+                        <h3>Property Overview</h3>
+                        <ul>
+                            <li><span class="marker red">●</span> Site boundary marked in red</li>
+                            <li><span class="marker">📍</span> 50 acres of prime land</li>
+                            <li><span class="marker">📏</span> Approx. 600m x 351m parallelogram</li>
+                            <li><span class="marker">🛣️</span> 2.5 km from Thika Highway</li>
+                        </ul>
+                        
+                        <!-- Property Details Section -->
+                        <div class="property-section">
+                            <h4>Property Details</h4>
+                            <p><strong>Size:</strong> 50 Acres (20.23 Hectares)</p>
+                            <p><strong>Dimensions:</strong> ~600m x 351m (parallelogram)</p>
+                            <p><strong>Location:</strong> Kasarani, Nairobi</p>
+                            <p><strong>Access:</strong> 2.5 km off Thika Highway</p>
+                            <p><strong>Zoning:</strong> Mixed-use development</p>
+                            <p><strong>Price:</strong> <span class="editable">Contact for pricing</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-const map=new mapboxgl.Map({container:'map',style:'mapbox://styles/mapbox/satellite-streets-v12',center:[centerLng,centerLat],zoom:15.5,pitch:60,antialias:true});
-let bounds;
+            <!-- Controls Info -->
+            <div class="controls-info collapsed" id="controlsInfo">
+                <button class="controls-toggle" id="controlsToggle">🎮 Map Controls</button>
+                <div class="controls-panel-content">
+                    <h3>Map Controls</h3>
+                    <ul>
+                        <li>🖱️ <strong>Click + Drag:</strong> Pan map</li>
+                        <li>🔍 <strong>Scroll:</strong> Zoom in/out</li>
+                        <li>⌨️ <strong>Right Click + Drag:</strong> Rotate/tilt</li>
+                        <li>🎬 <strong>Start Tour:</strong> Drone flythrough</li>
+                    </ul>
+                </div>
+            </div>
 
-function getCoord(base,adjustment){return[base[0]+(adjustment.lng*M2D),base[1]+(adjustment.lat*M2D)];}
+            <!-- Loading Indicator -->
+            <div id="loading" class="loading">
+                <div class="loading-content">
+                    <div class="spinner"></div>
+                    <p class="loading-text">Loading 3D Map...</p>
+                    <p class="loading-subtext">Fetching terrain and satellite imagery</p>
+                </div>
+            </div>
 
-// All update functions for proposed developments removed as requested.
-function updateGate(){}
-function updateMall(){}
-function updateStadium(){}
-function updateHouses(){}
-function updateParks(){}
-function updateRoads(){}
+            <!-- Watermark -->
+            <div class="watermark">
+                <svg style="width:16px;height:16px;display:inline-block;vertical-align:middle;margin-right:4px" viewBox="0 0 24 24" fill="rgba(255,255,255,0.25)">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                </svg>
+                mapped by Wilson Njuguna
+            </div>
+        </div>
 
-map.on('load',()=>{
-    map.addSource('mapbox-dem',{type:'raster-dem',url:'mapbox://mapbox.mapbox-terrain-dem-v1'});
-    map.setTerrain({source:'mapbox-dem',exaggeration:1.5});
-    map.addLayer({id:'sky',type:'sky',paint:{'sky-type':'atmosphere'}});
-    
-    // FIX: Use hardcoded boundary array instead of external file
-    map.addSource('site-boundary',{
-        type:'geojson',
-        data:{
-            type:'Feature',
-            geometry:{
-                type:'Polygon',
-                coordinates:[boundary]
-            }
-        }
-    });
-    
-    map.addLayer({id:'boundary-fill',type:'fill',source:'site-boundary',paint:{'fill-color':'#f00','fill-opacity':0.12}});
-    map.addLayer({id:'boundary-line',type:'line',source:'site-boundary',paint:{'line-color':'#FF0000','line-width':6,'line-dasharray':[3,2]}});
-    
-    bounds=new mapboxgl.LngLatBounds();
-    boundary.forEach(c=>bounds.extend(c));
-    map.fitBounds(bounds,{padding:60,pitch:60});
-    
-    // All proposed development sources removed as requested.
-    
-    // All proposed development layers removed as requested.
-    // Only boundary and terrain remain.
-    document.getElementById('status').textContent='✅ Ready! Adjust features with sliders.';
-});
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <span>📏 Size: 50 Acres (20.23 Ha)</span>
+                    <span>🛣️ 2.5 km from Thika Highway</span>
+                    <span>📍 Kasarani, Nairobi</span>
+                </div>
+                <div class="footer-credit">Powered by Mapbox Satellite</div>
+            </div>
+        </footer>
+    </div>
 
-// All control event listeners and related functions removed as requested.
-window.fitView=()=>{if(bounds)map.fitBounds(bounds,{padding:60,pitch:60,duration:2000});};
-window.exportCoords=()=>{console.log('Export function removed as controls are removed.');};
-
-console.log('🚀 Estate map ready! All features removed for final presentation.');
-</script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
